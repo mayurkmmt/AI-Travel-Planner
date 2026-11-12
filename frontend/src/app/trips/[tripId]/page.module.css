@@ -1,0 +1,160 @@
+.main { min-height: calc(100vh - 60px); }
+.pageContainer {
+  width: 100%;
+  padding-inline: var(--page-gutter);
+}
+.tripHeader {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0 0;
+  position: sticky; top: 60px; z-index: 10;
+}
+.tripHeaderInner { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+.breadcrumb { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px; }
+.breadcrumb a { color: var(--green-800); }
+.tripTitle { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 8px; }
+.tripMeta { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-sub); flex-wrap: wrap; }
+.tripActions { display: flex; gap: 10px; flex-shrink: 0; padding-top: 4px; }
+.budgetBanner { display: flex; align-items: center; gap: 16px; padding: 10px 0; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.budgetEst { font-size: 1.1rem; font-weight: 700; }
+.tabs { display: flex; gap: 4px; margin-top: 8px; }
+.tab { padding: 10px 18px; font-size: 0.875rem; color: var(--text-sub); border-bottom: 2px solid transparent; border-radius: 0; transition: all var(--dur) var(--ease); background: none; }
+.tab:hover { color: var(--text); }
+.active { color: var(--green-800); border-bottom-color: var(--green-800); font-weight: 600; }
+
+/* Content */
+.content { display: grid; grid-template-columns: 1fr 300px; gap: 28px; padding: 32px 0 48px; align-items: start; }
+
+/* ITINERARY */
+.itineraryGrid { display: flex; flex-direction: column; gap: 20px; }
+.dayNav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
+}
+.dayNavItem {
+  display: flex;
+  flex: 1 0 128px;
+  min-width: 128px;
+  min-height: 62px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg-card);
+  color: #000;
+  padding: 9px 12px;
+  transition: background var(--dur), color var(--dur), border-color var(--dur);
+}
+.dayNavItem:hover { border-color: var(--green-800); background: var(--bg-card); color: #000; }
+.dayNavItem :global(.text-muted) { color: #000; }
+.dayNavItemSelected { border: 2px solid var(--green-800); color: #000; }
+.dayNavItemSelected :global(.text-muted) { color: #000; }
+.dayNum { font-size: 0.75rem; font-weight: 600; }
+.itineraryDays { display: flex; flex-direction: column; gap: 20px; }
+.dayCard {
+  padding: 0;
+  overflow: hidden;
+  /* Keep anchor navigation below the sticky navbar and trip header. */
+  scroll-margin-top: 180px;
+}
+.dayCardHeader { display: flex; justify-content: space-between; align-items: flex-start; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+.dayLabel { font-size: 1rem; font-weight: 600; margin-bottom: 4px; display: block; }
+.activity { display: flex; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.activity:last-child { border-bottom: none; }
+.activityTime { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; width: 64px; }
+.timeDot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.activityBody { flex: 1; }
+.activityHeader { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+.tip { font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; font-style: italic; }
+.travelTime { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+/* STAYS */
+.staysSection { display: flex; flex-direction: column; gap: 32px; }
+.sectionHeading { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 14px; }
+.sectionHeading h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.45rem; }
+.staysGrid { display: flex; flex-direction: column; gap: 16px; }
+.hotelCard { display: flex; gap: 16px; overflow: hidden; padding: 20px; }
+.hotelImage { width: 120px; height: 90px; border-radius: var(--r-md); background: var(--bg-muted) center/cover; flex-shrink: 0; }
+.hotelBody { flex: 1; }
+.hotelBody h3 { margin-bottom: 4px; }
+.hotelMeta { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+.price { font-size: 0.9rem; font-weight: 600; color: var(--green-800); }
+.diningSection { border-top: 1px solid var(--border); padding-top: 26px; }
+.diningGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.diningCard { padding: 16px; display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; }
+.diningCard h3 { margin: 3px 0; font-size: 1rem; }
+.diningCard > strong { color: var(--green-800); white-space: nowrap; }
+.diningCard > p:last-child { grid-column: 1 / -1; margin-top: 3px; }
+.mealLabel { color: var(--green-700); text-transform: uppercase; letter-spacing: .08em; font-size: .64rem; font-weight: 700; }
+
+/* BUDGET */
+.budgetSection { display: flex; flex-direction: column; gap: 20px; }
+.budgetStats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.statCard { padding: 16px; }
+.statValue { font-size: 1.2rem; font-weight: 700; margin-top: 4px; }
+.budgetCard { padding: 24px; }
+.budgetCard h3 { margin-bottom: 16px; }
+.budgetBar { height: 12px; border-radius: var(--r-full); overflow: hidden; display: flex; margin-bottom: 20px; background: var(--bg-muted); }
+.budgetTable { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.budgetTable th { text-align: left; padding: 8px 0; color: var(--text-muted); font-weight: 500; border-bottom: 1px solid var(--border); }
+.budgetTable td { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.totalRow td { font-weight: 600; border-top: 2px solid var(--border); border-bottom: none; }
+
+/* ESSENTIALS */
+.essentialsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.packCard { padding: 20px; }
+.packList { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.packItem { display: flex; align-items: flex-start; gap: 8px; font-size: 0.875rem; }
+.packCheck { color: var(--text-muted); flex-shrink: 0; }
+
+/* CHAT SIDEBAR */
+.chatSidebar { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 160px; }
+.chatSidebarCard {
+  background: #F0F7F3; border: 1px solid #C9E4D4;
+  border-radius: var(--r-xl); padding: 20px;
+}
+.sidebarLabel { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; color: var(--green-800); margin-bottom: 8px; }
+.chatSidebarCard h3 { margin-bottom: 4px; }
+.conversationPreview { display: flex; flex-direction: column; gap: 8px; margin: 12px 0 14px; max-height: 300px; overflow: hidden; }
+.previewMessage { border: 1px solid #c9e4d4; border-radius: 8px; padding: 9px 10px; background: #fff; color: #486055; font-size: .75rem; line-height: 1.4; }
+.previewMessage span { display: block; margin-bottom: 3px; color: var(--green-700); font-size: .59rem; font-weight: 700; letter-spacing: .08em; }
+.previewMessage p { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+.previewUser { background: #e4f1e7; }
+.weatherCard { padding: 18px; }
+.weatherRow { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.weatherRow:last-child { border-bottom: none; }
+
+@media (max-width: 1024px) {
+  .content { grid-template-columns: 1fr; }
+  .chatSidebar { position: static; }
+  .budgetStats { grid-template-columns: repeat(2, 1fr); }
+  .essentialsGrid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .diningGrid { grid-template-columns: 1fr; }
+}
+
+/* SKELETONS */
+.skeletonTitle { height: 32px; width: 40%; background: var(--bg-muted); border-radius: 6px; margin-bottom: 12px; animation: skeletonPulse 1.5s ease-in-out infinite; }
+.skeletonMeta  { height: 16px; width: 60%; background: var(--bg-muted); border-radius: 4px; margin-bottom: 32px; animation: skeletonPulse 1.5s ease-in-out infinite; }
+.skeletonCard  { height: 160px; background: var(--bg-muted); border-radius: var(--r-lg); margin-bottom: 16px; animation: skeletonPulse 1.5s ease-in-out infinite; }
+@keyframes skeletonPulse { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .tabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { white-space: nowrap; flex-shrink: 0; padding: 10px 12px; }
+  .tripActions { flex-direction: column; gap: 6px; align-items: flex-start; }
+  .budgetStats { grid-template-columns: repeat(2, 1fr); }
+  .hotelCard { flex-direction: column; }
+  .hotelImage { width: 100%; height: 160px; }
+  .diningGrid { grid-template-columns: 1fr; }
+  .essentialsGrid { grid-template-columns: 1fr; }
+}
